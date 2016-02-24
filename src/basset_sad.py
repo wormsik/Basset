@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 from optparse import OptionParser
-import os, subprocess
+import os, subprocess, sys
 
 import h5py
 import matplotlib.pyplot as plt
@@ -161,6 +161,10 @@ def main():
     #################################################################
     # plot SAD heatmaps
     #################################################################
+    if os.environ.get('DISPLAY') == None:
+        print >> sys.stderr, 'DISPLAY variable is not defined => plotting will be skipped...'
+        return
+
     for ii in sad_matrices:
         # convert fully to numpy arrays
         sad_matrix = abs(np.array(sad_matrices[ii]))
