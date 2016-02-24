@@ -52,7 +52,7 @@ def main():
 
     if options.model_hdf5_file is None:
         # get one hot coded input sequences
-        seq_vecs, seqs, seq_headers = vcf.snps_seq1(snps, options.genome_fasta, options.seq_len)
+        seq_vecs, seqs, seq_headers, snps = vcf.snps_seq1_fixed(snps, options.genome_fasta, options.seq_len)
 
         # reshape sequences for torch
         seq_vecs = seq_vecs.reshape((seq_vecs.shape[0],4,1,seq_vecs.shape[1]/4))
